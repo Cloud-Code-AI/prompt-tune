@@ -4,10 +4,20 @@ import ThreeDots from "react-loading-icons/dist/esm/components/three-dots";
 import { PaperPlaneIcon } from "@radix-ui/react-icons"
 import { useState } from "react";
 
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+  } from "@/components/ui/select"
+
 const promptData = [
     {
         number: "1",
-        prompt: "Sample prompt 1"
+        prompt: "Sample prompt 1 Sample prompt 1 Sample prompt 1 Sample prompt 1 Sample prompt 1"
     },
     {
         number: "2",
@@ -92,9 +102,23 @@ export default function Tool () {
                             <div className="p-6">
                                 <Label className="text-gray-600">PREVIEW</Label>
                             </div>
-                            <div className="border-l p-6">
-                                Prompt Selection
-                            </div>
+                            <div className="border-l p-4">
+                                <Select>
+                                    <SelectTrigger className="w-[180px]">
+                                        <SelectValue placeholder="Select prompt" />
+                                    </SelectTrigger>
+                                    <SelectContent className="max-w-sm">
+                                        <SelectGroup>
+                                        <SelectLabel>Prompts</SelectLabel>
+                                        {promptData.map((prompt) => (
+                                             <SelectItem key={prompt.number} value={prompt.number}>
+                                                <p>{prompt.prompt}</p>
+                                            </SelectItem>
+                                        ))}
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                                </div>
                         </div>
                     </div>
                     <div className="flex flex-1 w-full items-center p-6">
