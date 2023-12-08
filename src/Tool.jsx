@@ -41,13 +41,15 @@ export default function Tool () {
         id: 0
     })
     const [selected, setSelected] = useState('Choose a prompt')
+    const [original, setOriginal] = useState('Original')
 
     const submitPrompt = (e) => {
         e.preventDefault();
         setLoading(true)
         //TODO: Add API call here to load 5 prompt options.
-        const resp = "response"
-        console.log(resp)
+        const og_prompt = document.getElementById("prompt").value
+        setOriginal(og_prompt)
+       
         setOption1({
             text: promptData[0],
             id: 0
@@ -174,9 +176,10 @@ export default function Tool () {
                                         <SelectContent className="max-w-sm">
                                             <SelectGroup>
                                             <SelectLabel>Prompts</SelectLabel>
-                                            {promptData.map((prompt) => (
-                                                <SelectItem key={prompt.number} value={prompt.number}>
-                                                    <p>{prompt.prompt}</p>
+                                            <SelectItem value={original}>{original}</SelectItem>
+                                            {promptData.map((prompt, index) => (
+                                                <SelectItem key={index} value={prompt}>
+                                                    <p>{prompt}</p>
                                                 </SelectItem>
                                             ))}
                                             </SelectGroup>
