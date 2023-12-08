@@ -15,6 +15,8 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import { Button } from "./components/ui/button";
+import chatbot from './assets/chatbot.png'
+import user from './assets/user.png'
 
 const promptData = [
     "Sample prompt 1",
@@ -46,20 +48,26 @@ export default function Tool () {
 
     const submitPrompt = (e) => {
         e.preventDefault();
-        setLoading(true)
+
         //TODO: Add API call here to load 5 prompt options.
+
         const og_prompt = document.getElementById("prompt").value
-        setOriginal(og_prompt)
-       
-        setOption1({
-            text: promptData[0],
-            id: 0
-        })
-        setOption2({
-            text: promptData[1],
-            id: 1
-        })
-        setLoading(false)
+        if (og_prompt.length === 0) {
+            console.log("Error")
+        }
+        else {
+            setLoading(true)
+            setOriginal(og_prompt)
+            setOption1({
+                text: promptData[0],
+                id: 0
+            })
+            setOption2({
+                text: promptData[1],
+                id: 1
+            })
+            setLoading(false)
+        }
     }
 
     const submitChatPrompt = (e) => {
@@ -209,7 +217,7 @@ export default function Tool () {
                                     </Button>
                                     <Select>
                                         <SelectTrigger className="w-[280px]">
-                                            <SelectValue placeholder="Select prompt" />
+                                            <SelectValue placeholder="Select prompt" defaultValue={selected}/>
                                         </SelectTrigger>
                                         <SelectContent className="max-w-sm">
                                             <SelectGroup>
@@ -231,16 +239,16 @@ export default function Tool () {
                                 {messages.map((message) => (
                                     message.sender === "Bot" ? 
                                     <div key={message.id} className="flex items-center gap-x-4 justify-start whitespace-pre-wrap">
-                                        <Avatar className="h-9 w-9 border border-primary">
-                                            <AvatarImage src="" />
+                                        <Avatar className="h-9 w-9 border border-primary items-center justify-center bg-blue-100">
+                                            <AvatarImage src={chatbot} className="h-5 w-5"/>
                                             <AvatarFallback>B</AvatarFallback>
                                         </Avatar>
                                         <p className="bg-secondary text-primary px-6 py-2 rounded-lg">{message.text}</p>
                                     </div> 
                                     :
                                     <div key={message.id} className="flex items-center gap-x-4 justify-end whitespace-pre-wrap">
-                                        <Avatar className="h-9 w-9 border border-primary">
-                                            <AvatarImage src="" />
+                                        <Avatar className="h-9 w-9 border border-primary items-center justify-center bg-blue-100">
+                                            <AvatarImage src={user} className="h-5 w-5"/>
                                             <AvatarFallback>U</AvatarFallback>
                                         </Avatar>
                                         <p className="bg-primary text-secondary px-6 py-2 rounded-lg">{message.text}</p>
