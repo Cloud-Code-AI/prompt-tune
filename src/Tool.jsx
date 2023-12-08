@@ -1,7 +1,7 @@
 import Header from "./components/header";
 import { Label } from "./components/ui/label";
 import ThreeDots from "react-loading-icons/dist/esm/components/three-dots";
-import { PaperPlaneIcon } from "@radix-ui/react-icons"
+import { PaperPlaneIcon, PlayIcon } from "@radix-ui/react-icons"
 import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -42,6 +42,7 @@ export default function Tool () {
     })
     const [selected, setSelected] = useState('Choose a prompt')
     const [original, setOriginal] = useState('Original')
+    const [allPrompts, setAllPrompts] = useState(false)
 
     const submitPrompt = (e) => {
         e.preventDefault();
@@ -117,8 +118,26 @@ export default function Tool () {
                     })
                 }
             }
-            
         }
+        if (option1.id === 4 || option2.id === 4) {
+            //TODO: Call run function here.
+            testPrompt()
+        }
+    }
+
+    const testPrompt = () => {
+        setMessages((prevMessages) => [
+            ...prevMessages,
+            { text: selected, sender: "User" }
+        ])
+
+        //TODO: call chatbot API here to get response for 'selected'
+        
+        const response = "Dummy Response"
+        setMessages((prevMessages) => [
+            ...prevMessages,
+            { text: response, sender: "Bot" }
+        ])
     }
 
     return (
@@ -184,7 +203,10 @@ export default function Tool () {
                                 <div className="p-6">
                                     <Label className="text-primary/50">PREVIEW</Label>
                                 </div>
-                                <div className="p-4">
+                                <div className="p-4 flex items-center gap-x-2">
+                                    <Button variant="outline" onClick={testPrompt}>
+                                        <PlayIcon className="h-5 w-5" />
+                                    </Button>
                                     <Select>
                                         <SelectTrigger className="w-[280px]">
                                             <SelectValue placeholder="Select prompt" />
