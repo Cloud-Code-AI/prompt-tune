@@ -17,7 +17,7 @@ import {
 const promptData = [
     {
         number: "1",
-        prompt: "Sample prompt 1 Sample prompt 1 Sample prompt 1 Sample prompt 1 Sample prompt 1"
+        prompt: "Sample prompt 1"
     },
     {
         number: "2",
@@ -102,9 +102,9 @@ export default function Tool () {
                             <div className="p-6">
                                 <Label className="text-gray-600">PREVIEW</Label>
                             </div>
-                            <div className="border-l p-4">
+                            <div className="p-4">
                                 <Select>
-                                    <SelectTrigger className="w-[180px]">
+                                    <SelectTrigger className="w-[280px]">
                                         <SelectValue placeholder="Select prompt" />
                                     </SelectTrigger>
                                     <SelectContent className="max-w-sm">
