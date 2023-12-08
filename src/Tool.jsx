@@ -61,9 +61,25 @@ export default function Tool () {
         setLoading(false)
     }
 
-    const submitChatPrompt = (e,) => {
+    const submitChatPrompt = (e) => {
         e.preventDefault();
         setChatLoading(true) 
+
+        const chatPrompt = document.getElementById("chatPrompt").value;
+        setMessages((prevMessages) => [
+            ...prevMessages,
+            { text: chatPrompt, sender: "User" }
+        ])
+        document.getElementById("chatPrompt").value = "";
+        
+        //TODO: send messages to chatbot API.
+        const response = "Dummy response"
+        setMessages((prevMessages) => [
+            ...prevMessages,
+            { text: response, sender: "Bot" }
+        ])
+
+        setChatLoading(false)
     }
 
     const handleSelect = (id) => {
