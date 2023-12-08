@@ -127,10 +127,7 @@ export default function Tool () {
                 }
             }
         }
-        if (option1.id === 4 || option2.id === 4) {
-            //TODO: Call run function here.
-            testPrompt()
-        }
+
     }
 
     const testPrompt = () => {
@@ -215,9 +212,9 @@ export default function Tool () {
                                     <Button variant="outline" onClick={testPrompt}>
                                         <PlayIcon className="h-5 w-5" />
                                     </Button>
-                                    <Select>
+                                    <Select value={selected} onValueChange={setSelected}>
                                         <SelectTrigger className="w-[280px]">
-                                            <SelectValue placeholder="Select prompt" defaultValue={selected}/>
+                                            <SelectValue placeholder="Select a prompt"/>
                                         </SelectTrigger>
                                         <SelectContent className="max-w-sm">
                                             <SelectGroup>
