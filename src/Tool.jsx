@@ -40,6 +40,8 @@ export default function Tool () {
         text: "Enter prompt to generate options",
         id: 0
     })
+    const [selected, setSelected] = useState('Choose a prompt')
+
     const submitPrompt = (e) => {
         e.preventDefault();
         setLoading(true)
@@ -63,11 +65,8 @@ export default function Tool () {
     }
 
     const handleSelect = (id) => {
-        console.log(id)
-        console.log(option1.id)
-        console.log(option2.id)
-        console.log(option1.id === option2.id)
         if (id === 1) {
+            setSelected(promptData[option1.id])
             if (option2.id < 5) {
                 if (option2.id + 1 != option1.id && option2.id + 1 < 5) {
                     setOption2({
@@ -85,6 +84,7 @@ export default function Tool () {
             
         }
         if (id === 2) {
+            setSelected(promptData[option2.id])
             if (option1.id < 5) {
                 if (option1.id + 1 != option2.id && option1.id + 1 < 5) {
                     setOption1({
@@ -157,7 +157,7 @@ export default function Tool () {
                         </div>
                         <div className="p-6 flex flex-col gap-y-2">
                             <Label className="text-xs text-primary/50">TUNED PROMPT</Label>
-                            <p>{promptData[0].prompt}</p>
+                            <p>{selected}</p>
                         </div>
                     </div>
                     <div className="flex flex-col w-full h-full border-l">
@@ -209,7 +209,7 @@ export default function Tool () {
                         </div>
                         <div className="flex w-full border-t p-4">
                         <form id="promptForm" className="h-full w-full">
-                            <label htmlFor="prompt" className="sr-only">Enter your prompt</label>
+                            <label htmlFor="prompt" className="sr-only">Enter your message</label>
                             <div className="relative h-full">
                                 <textarea
                                     id="chatPrompt"
