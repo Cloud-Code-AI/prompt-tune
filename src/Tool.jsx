@@ -43,6 +43,7 @@ export default function Tool () {
         id: 0
     })
     const [selected, setSelected] = useState('Choose a prompt')
+    const [tuned, setTuned] = useState('Choose a prompt')
     const [original, setOriginal] = useState('Original')
     const [allPrompts, setAllPrompts] = useState(false)
 
@@ -94,6 +95,7 @@ export default function Tool () {
     const handleSelect = (id) => {
         if (id === 1) {
             setSelected(promptData[option1.id])
+            setTuned(promptData[option1.id])
             if (option2.id < 5) {
                 if (option2.id + 1 != option1.id && option2.id + 1 < 5) {
                     setOption2({
@@ -112,6 +114,7 @@ export default function Tool () {
         }
         if (id === 2) {
             setSelected(promptData[option2.id])
+            setTuned(promptData[option2.id])
             if (option1.id < 5) {
                 if (option1.id + 1 != option2.id && option1.id + 1 < 5) {
                     setOption1({
@@ -199,7 +202,7 @@ export default function Tool () {
                         </div>
                         <div className="p-6 flex flex-col gap-y-2">
                             <Label className="text-xs text-primary/50">TUNED PROMPT</Label>
-                            <p>{selected}</p>
+                            <p>{tuned}</p>
                         </div>
                     </div>
                     <div className="flex flex-col w-full h-full border-l">
